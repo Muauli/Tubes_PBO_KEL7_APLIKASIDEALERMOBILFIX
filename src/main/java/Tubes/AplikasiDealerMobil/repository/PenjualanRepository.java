@@ -8,5 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public interface PenjualanRepository {
+@Repository
+public interface PenjualanRepository extends JpaRepository<Penjualan, Long> {
+    Optional<List<Penjualan>> findByTanggalPenjualanBetweenOrderByTanggalPenjualan(LocalDate startDate, LocalDate endDate);
 }
