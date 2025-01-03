@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/base :: head(title='Catat Penjualan')}">
+</head>
+<body>
+<nav th:replace="~{fragments/base :: nav}"></nav>
+
+<div class="container mt-4">
+    <h2>Catat Penjualan Mobil</h2>
+
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <span th:text="${error}">Error message</span>
+    </div>
+
+    <div th:if="${sukses}" class="alert alert-success" role="alert">
+        <span th:text="${sukses}">Success message</span>
+    </div>
+
+    <form th:action="@{/penjualan/record}" method="post" th:object="${penjualanDto}">
+        <div class="mb-3">
+            <label for="idMobil" class="form-label">Pilih Mobil:</label>
+            <select id="idMobil" class="form-select" th:field="*{idMobil}" required>
+                <option value="">-- Pilih Mobil --</option>
+                <option th:each="mobil : ${availableCars}"
+                        th:value="${mobil.id}"
+                        th:text="${mobil.namaMobil + ' - ' + mobil.pabrikan + ' (' + mobil.tahun + ')'}">
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="tanggalPenjualan" class="form-label">Tanggal Penjualan:</label>
+            <input type="date" class="form-control" id="tanggalPenjualan"
+                   th:field="*{tanggalPenjualan}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="hargaJual" class="form-label">Harga Jual (Rp):</label>
+            <input type="number" class="form-control" id="hargaJual"
+                   th:field="*{hargaJual}" required min="0">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Simpan</button>
+        <a th:href="@{/dashboard}" class="btn btn-secondary">Kembali</a>
+    </form>
+</div>
+
+<footer th:replace="~{fragments/base :: footer}"></footer>
+</body>
+</html>
