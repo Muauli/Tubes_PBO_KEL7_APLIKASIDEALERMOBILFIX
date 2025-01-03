@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/base :: head(title='Dashboard')}"> </head>
+<body class="d-flex flex-column min-vh-100">
+<nav th:replace="~{fragments/base :: nav}"></nav>
+
+<div class="container mt-4">
+    <h2>Dashboard</h2>
+    <hr />
+
+    <div class="container mt-4">
+        <h2>Dashboard</h2>
+        <p>Welcome, <span th:text="${username}">User</span>!</p>
+        <p>Your role is: <span th:text="${userRole}">Role</span></p>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-4 mb-4" th:if="${userRole == 'DEALER_ADMIN'}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Tambah Mobil</h5>
+                    <p class="card-text">Tambahkan data mobil baru ke sistem</p>
+                    <a th:href="@{/mobil/tambah}" class="btn btn-primary">Tambah</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4" th:if="${userRole == 'DEALER_ADMIN'}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lihat Mobil</h5>
+                    <p class="card-text">Lihat daftar semua mobil tersedia</p>
+                    <a th:href="@{/mobil/list}" class="btn btn-primary">Lihat</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4" th:if="${userRole == 'SALES_DEALER'}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Catat Penjualan</h5>
+                    <p class="card-text">Rekam transaksi penjualan mobil</p>
+                    <a th:href="@{/penjualan/record}" class="btn btn-primary"
+                    >Catat</a
+                    >
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4" th:if="${userRole == 'SALES_DEALER'}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lihat Penjualan</h5>
+                    <p class="card-text">Lihat catatan penjualan</p>
+                    <a th:href="@{/penjualan/list}" class="btn btn-primary">Lihat</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4" th:if="${userRole == 'SALES_DEALER'}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Rekapitulasi Penjualan</h5>
+                    <p class="card-text">Lihat rekapitulasi berdasarkan tanggal</p>
+                    <a th:href="@{/penjualan/report}" class="btn btn-primary"
+                    >Rekap</a
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cari Mobil</h5>
+                    <form
+                            th:action="@{/mobil/cari}"
+                            method="get"
+                            onsubmit="return validateSearch()"
+                    >
+                        <div class="input-group">
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    name="keyword"
+                                    id="searchKeyword"
+                                    placeholder="Cari mobil berdasarkan nama, jenis, dll..."
+                            />
+                            <button class="btn btn-primary" type="submit">Cari</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{fragments/base :: footer}"></footer>
+</body>
+<script>
+    function validateSearch() {
+        var keyword = document.getElementById("searchKeyword").value.trim();
+        if (keyword === "") {
+            alert("Silakan masukkan kata kunci pencarian");
+            return false;
+        }
+        return true;
+    }
+</script>
+</html>

@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${title}">Dealer Mobil</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
 </head>
-<body>
 
-</body>
+<nav th:fragment="nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/static">Dealer Mobil</a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
+                </li>
+                <li class="nav-item" th:if="${userRole == 'DEALER_ADMIN'}">
+                    <a class="nav-link" th:href="@{/mobil/tambah}">Tambah Mobil</a>
+                </li>
+                <li class="nav-item" th:if="${userRole == 'DEALER_ADMIN'}">
+                    <a class="nav-link" th:href="@{/mobil/list}">Lihat Mobil</a>
+                </li>
+                <li class="nav-item" th:if="${userRole == 'SALES_DEALER'}">
+                    <a class="nav-link" th:href="@{/penjualan/record}"
+                    >Catat Penjualan</a
+                    >
+                </li>
+                <li class="nav-item" th:if="${userRole == 'SALES_DEALER'}">
+                    <a class="nav-link" th:href="@{/penjualan/report}"
+                    >Laporan Penjualan</a
+                    >
+                </li>
+                <li class="nav-item" th:if="${userRole == 'SALES_DEALER'}">
+                    <a class="nav-link" th:href="@{/penjualan/list}">Lihat Catatan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/mobil/cari}">Cari Mobil</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/auth/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<footer th:fragment="footer" class="footer mt-auto py-3 bg-light">
+    <div class="container text-center">
+        <span class="text-muted">© 2024 Dealer Mobil. All rights reserved.</span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</footer>
 </html>
