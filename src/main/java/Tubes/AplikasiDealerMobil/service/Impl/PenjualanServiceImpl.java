@@ -7,8 +7,8 @@ import Tubes.AplikasiDealerMobil.model.Penjualan;
 import Tubes.AplikasiDealerMobil.model.StatusMobil;
 import Tubes.AplikasiDealerMobil.repository.MobilRepository;
 import Tubes.AplikasiDealerMobil.repository.PenjualanRepository;
+import Tubes.AplikasiDealerMobil.service.PenjualanService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

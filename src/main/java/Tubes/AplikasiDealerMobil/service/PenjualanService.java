@@ -5,6 +5,8 @@ import Tubes.AplikasiDealerMobil.dto.PenjualanDto;
 import java.time.LocalDate;
 import java.util.List;
 
-public class PenjualanServiceImpl implements PenjualanService {
+public interface PenjualanService {
+    PenjualanDto savePenjualan(PenjualanDto penjualanDto);
+    List<PenjualanDto> getLaporanPenjualan(LocalDate startDate, LocalDate endDate);
+    List<PenjualanDto> getAllPenjualan();
 }
-
