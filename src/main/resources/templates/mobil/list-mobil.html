@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/base :: head(title='Daftar Mobil')}">
+</head>
+<body>
+<nav th:replace="~{fragments/base :: nav}"></nav>
+
+<div class="container mt-4">
+  <h2>Daftar Mobil</h2>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nama Mobil</th>
+        <th>Jenis</th>
+        <th>Tahun</th>
+        <th>Pabrikan</th>
+        <th>Status</th>
+        <th>Aksi</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="mobil : ${mobils}">
+        <td th:text="${mobil.id}"></td>
+        <td th:text="${mobil.namaMobil}"></td>
+        <td th:text="${mobil.jenisMobil}"></td>
+        <td th:text="${mobil.tahun}"></td>
+        <td th:text="${mobil.pabrikan}"></td>
+        <td>
+                    <span th:if="${mobil.status.name() == 'AVAILABLE'}"
+                          class="badge bg-success">Tersedia</span>
+          <span th:if="${mobil.status.name() == 'SOLD'}"
+                class="badge bg-danger">Terjual</span>
+        </td>
+        <td>
+          <a th:href="@{/mobil/edit/{id}(id=${mobil.id})}" class="btn btn-warning btn-sm">Edit</a>
+          <a th:href="@{/mobil/hapus/{id}(id=${mobil.id})}"
+             class="btn btn-danger btn-sm"
+             onclick="return confirm('Yakin ingin menghapus mobil ini?')">Hapus</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mb-4">
+    <a th:href="@{/dashboard}" class="btn btn-secondary">Kembali ke Dashboard</a>
+  </div>
+</div>
+</body>
+</html>

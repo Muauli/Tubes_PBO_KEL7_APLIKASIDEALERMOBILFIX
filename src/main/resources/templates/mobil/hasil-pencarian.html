@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/base :: head(title='Hasil Pencarian')}"> </head>
+<body class="d-flex flex-column min-vh-100">
+<nav th:replace="~{fragments/base :: nav}"></nav>
+
+<div class="container mt-4">
+    <h2>Hasil Pencarian Mobil</h2>
+
+    <div class="mb-4">
+        <a th:href="@{/dashboard}" class="btn btn-secondary"
+        >Kembali ke Dashboard</a
+        >
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <form th:action="@{/mobil/cari}" method="get">
+                <div class="input-group">
+                    <input
+                            type="text"
+                            class="form-control"
+                            name="keyword"
+                            th:value="${param.keyword}"
+                            placeholder="Cari mobil..."
+                    />
+                    <button class="btn btn-primary" type="submit">Cari</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nama Mobil</th>
+                <th>Jenis</th>
+                <th>Tahun</th>
+                <th>Nomor Rangka</th>
+                <th>Nomor Mesin</th>
+                <th>Nomor Polisi</th>
+                <th>Kapasitas Mesin</th>
+                <th>Warna</th>
+                <th>Pabrikan</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="mobil : ${mobils}">
+                <td th:text="${mobil.namaMobil}"></td>
+                <td th:text="${mobil.jenisMobil}"></td>
+                <td th:text="${mobil.tahun}"></td>
+
+                <td th:text="${mobil.nomorRangka}"></td>
+                <td th:text="${mobil.nomorMesin}"></td>
+                <td th:text="${mobil.nomorPolisi}"></td>
+                <td th:text="${mobil.kapasitasMesin}"></td>
+                <td th:text="${mobil.warna}"></td>
+                <td th:text="${mobil.pabrikan}"></td>
+                <td>
+                <span
+                        th:if="${mobil.status.name() == 'AVAILABLE'}"
+                        class="badge bg-success"
+                >Tersedia</span
+                >
+                    <span
+                            th:if="${mobil.status.name() == 'SOLD'}"
+                            class="badge bg-danger"
+                    >Terjual</span
+                    >
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:if="${#lists.isEmpty(mobils)}" class="alert alert-info">
+        Tidak ada mobil yang ditemukan.
+    </div>
+</div>
+
+<footer th:replace="~{fragments/base :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/base :: head(title='Tambah Mobil')}"> </head>
+<body class="d-flex flex-column min-vh-100">
+<nav th:replace="~{fragments/base :: nav}"></nav>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title mb-0">Tambah Mobil Baru</h3>
+        </div>
+        <div class="card-body">
+          <form
+                  th:action="@{/mobil/tambah}"
+                  th:object="${mobil}"
+                  method="post"
+          >
+            <div class="mb-3">
+              <label for="namaMobil" class="form-label">Nama Mobil</label>
+              <input
+                      type="text"
+                      class="form-control"
+                      id="namaMobil"
+                      th:field="*{namaMobil}"
+                      required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="jenisMobil" class="form-label">Jenis Mobil</label>
+              <input
+                      type="text"
+                      class="form-control"
+                      id="jenisMobil"
+                      th:field="*{jenisMobil}"
+                      required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="tahun" class="form-label">Tahun</label>
+              <input
+                      type="text"
+                      class="form-control"
+                      id="tahun"
+                      th:field="*{tahun}"
+                      required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="nomorRangka" class="form-label"
+              >Nomor Rangka</label
+              >
+              <input
+                      type="text"
+                      class="form-control"
+                      id="nomorRangka"
+                      th:field="*{nomorRangka}"
+                      required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="nomorMesin" class="form-label">Nomor Mesin</label>
+              <input
+                      type="text"
+                      class="form-control"
+                      id="nomorMesin"
+                      th:field="*{nomorMesin}"
+                      required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="nomorPolisi" class="form-label"
+              >Nomor Polisi</label
+              >
+              <input
+                      type="text"
+                      class="form-control"
+                      id="nomorPolisi"
+                      th:field="*{nomorPolisi}"
+                      required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="kapasitasMesin" class="form-label"
+              >Kapasitas Mesin</label
+              >
+              <input
+                      type="text"
+                      class="form-control"
+                      id="kapasitasMesin"
+                      th:field="*{kapasitasMesin}"
+                      required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="warna" class="form-label">Warna</label>
+              <input
+                      type="text"
+                      class="form-control"
+                      id="warna"
+                      th:field="*{warna}"
+                      required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="pabrikan" class="form-label">Pabrikan</label>
+              <input
+                      type="text"
+                      class="form-control"
+                      id="pabrikan"
+                      th:field="*{pabrikan}"
+                      required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="status" class="form-label">Status</label>
+              <select
+                      class="form-select"
+                      id="status"
+                      th:field="*{status}"
+                      required
+              >
+                <option value="AVAILABLE">Tersedia</option>
+                <option value="SOLD">Terjual</option>
+              </select>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a th:href="@{/dashboard}" class="btn btn-secondary me-md-2"
+              >Batal</a
+              >
+              <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="~{fragments/base :: footer}"></footer>
+</body>
+</html>
