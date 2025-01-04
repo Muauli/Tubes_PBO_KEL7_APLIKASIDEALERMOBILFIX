@@ -1,7 +1,6 @@
 package Tubes.AplikasiDealerMobil.service.Impl;
 
 import Tubes.AplikasiDealerMobil.dto.UserDto;
-import Tubes.AplikasiDealerMobil.exception.ResourceNotFoundException;
 import Tubes.AplikasiDealerMobil.mapper.UserMapper;
 import Tubes.AplikasiDealerMobil.model.User;
 import Tubes.AplikasiDealerMobil.repository.UserRepository;

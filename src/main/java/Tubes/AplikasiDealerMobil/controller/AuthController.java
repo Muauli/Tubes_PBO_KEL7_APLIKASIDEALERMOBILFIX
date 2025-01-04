@@ -35,7 +35,7 @@ public class AuthController {
             session.setAttribute("username", loginDto.getUsername());
             session.setAttribute("userRole", role);
 
-            System.out.println("Session attributes set - Redirecting to dashboard");
+
             return "redirect:/dashboard";
         }
 
