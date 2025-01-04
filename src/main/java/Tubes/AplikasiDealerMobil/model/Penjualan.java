@@ -1,6 +1,8 @@
 package Tubes.AplikasiDealerMobil.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 
@@ -10,6 +12,7 @@ public class Penjualan extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "mobil_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Mobil mobil;
 
     @Column(name = "tanggal_penjualan")

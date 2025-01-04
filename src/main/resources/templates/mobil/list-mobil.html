@@ -6,6 +6,12 @@
 <nav th:replace="~{fragments/base :: nav}"></nav>
 
 <div class="container mt-4">
+  <div th:if="${sukses}" class="alert alert-success" role="alert">
+    <span th:text="${sukses}"></span>
+  </div>
+  <div th:if="${error}" class="alert alert-danger" role="alert">
+    <span th:text="${error}"></span>
+  </div>
   <h2>Daftar Mobil</h2>
 
   <div class="table-responsive">

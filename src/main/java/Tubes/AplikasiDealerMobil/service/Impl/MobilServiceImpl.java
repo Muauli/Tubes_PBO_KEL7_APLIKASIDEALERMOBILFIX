@@ -57,9 +57,14 @@ public class MobilServiceImpl implements MobilService {
     }
 
     @Override
-    public void deleteMobilById(Long MobilId) {
-        mobilRepository.deleteById(MobilId);
-
+    public void deleteMobilById(Long mobilId) {
+        try {
+            mobilRepository.deleteById(mobilId);
+            System.out.println("Berhasil menghapus mobil dengan ID: " + mobilId);
+        } catch (Exception e) {
+            System.err.println("Error saat menghapus mobil: " + e.getMessage());
+            throw new RuntimeException("Gagal menghapus mobil: " + e.getMessage());
+        }
     }
 
     @Override
